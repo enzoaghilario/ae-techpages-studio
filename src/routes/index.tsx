@@ -335,7 +335,7 @@ function useReveal() {
           const el = e.target as HTMLElement;
           io.unobserve(el);
           if (el.classList.contains("reveal")) {
-            const delay = Number(el.dataset.delay ?? 0);
+            const delay = Number(el.dataset["delay"] ?? 0);
             el.style.setProperty("--build-delay", `${delay}ms`);
             flyCursor(el, delay);
           }
@@ -345,7 +345,7 @@ function useReveal() {
     );
     els.forEach((el) => {
       const sibs = Array.from(el.parentElement?.children ?? []).filter((c) => c.classList.contains("reveal"));
-      el.dataset.delay = String(500 + Math.min(Math.max(sibs.indexOf(el), 0), 6) * 220);
+      el.dataset["delay"] = String(500 + Math.min(Math.max(sibs.indexOf(el), 0), 6) * 220);
       io.observe(el);
     });
     return () => io.disconnect();
