@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -99,7 +100,7 @@ function Cta({ children, ghost }: { children: React.ReactNode; ghost?: boolean }
       className={
         ghost
           ? "inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 font-semibold transition-colors hover:border-primary hover:text-primary"
-          : "inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-bold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5"
+          : "inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-bold text-primary-foreground shadow-glow animate-glow transition-transform hover:-translate-y-0.5"
       }
     >
       {children}
@@ -108,10 +109,11 @@ function Cta({ children, ghost }: { children: React.ReactNode; ghost?: boolean }
 }
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-primary">{children}</p>;
+  return <p className="reveal mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-primary">{children}</p>;
 }
 
 function Index() {
+  useReveal();
   return (
     <div className="min-h-screen overflow-x-hidden bg-background bg-grid">
       <header className="sticky top-0 z-20 border-b border-border/60 bg-background/80 backdrop-blur">
@@ -130,9 +132,9 @@ function Index() {
       </header>
 
       <section className="relative mx-auto max-w-6xl px-6 pb-28 pt-24 md:pt-32">
-        <span aria-hidden className="pointer-events-none absolute -right-10 top-10 select-none font-display text-[16rem] font-bold leading-none text-outline md:text-[26rem]">AE</span>
-        <div className="relative max-w-3xl">
-          <Eyebrow>Landing pages · Sites · SaaS · Automações</Eyebrow>
+        <span aria-hidden className="pointer-events-none absolute -right-10 top-10 select-none font-display text-[16rem] font-bold leading-none text-outline animate-float md:text-[26rem]">AE</span>
+        <div className="relative max-w-3xl animate-fade-up">
+          <Eyebrow>Landing pages · Sites · SaaS</Eyebrow>
           <h1 className="text-5xl font-bold leading-[1.05] md:text-7xl">
             Sua ideia. <span className="text-primary">Nós criamos.</span>
           </h1>
@@ -148,10 +150,10 @@ function Index() {
 
       <section id="servicos" className="mx-auto max-w-6xl px-6 py-20">
         <Eyebrow>O que fazemos</Eyebrow>
-        <h2 className="mb-12 text-4xl font-bold">Soluções digitais sob medida</h2>
+        <h2 className="reveal mb-12 text-4xl font-bold">Soluções digitais sob medida</h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map(({ icon: I, t, d }) => (
-            <div key={t} className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary">
+          {services.map(({ icon: I, t, d }, i) => (
+            <div key={t} className="reveal hover:-translate-y-1 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary">
               <I className="mb-5 size-8 text-primary" />
               <h3 className="mb-2 text-xl font-bold">{t}</h3>
               <p className="text-sm text-muted-foreground">{d}</p>
@@ -162,10 +164,10 @@ function Index() {
 
       <section id="processo" className="mx-auto max-w-6xl px-6 py-20">
         <Eyebrow>Como funciona</Eyebrow>
-        <h2 className="mb-12 text-4xl font-bold">Do papel para a tela em 4 passos</h2>
+        <h2 className="reveal mb-12 text-4xl font-bold">Do papel para a tela em 4 passos</h2>
         <div className="grid gap-8 md:grid-cols-4">
-          {steps.map((s, i) => (
-            <div key={s.t} className="border-t-2 border-primary pt-5">
+          {steps.map((s, i, i) => (
+            <div key={s.t} className="reveal hover:-translate-y-1 border-t-2 border-primary pt-5">
               <p className="font-display text-4xl font-bold text-primary">0{i + 1}</p>
               <h3 className="mt-2 text-lg font-bold">{s.t}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{s.d}</p>
@@ -177,7 +179,7 @@ function Index() {
       <section id="sobre" className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2">
         <div>
           <Eyebrow>Sobre a startup</Eyebrow>
-          <h2 className="mb-6 text-4xl font-bold">Tecnologia com cara de gente</h2>
+          <h2 className="reveal mb-6 text-4xl font-bold">Tecnologia com cara de gente</h2>
           <p className="mb-4 text-muted-foreground">
             A AE Tech Pages nasceu da vontade de ajudar empreendedores e empresas a ocuparem o lugar que merecem na internet. Somos uma startup jovem, movida por design, código e resultado.
           </p>
@@ -186,8 +188,8 @@ function Index() {
           </p>
         </div>
         <div className="grid grid-cols-2 gap-4 self-center">
-          {perks.map(({ icon: I, t }) => (
-            <div key={t} className="rounded-2xl border border-border bg-card p-5">
+          {perks.map(({ icon: I, t }, i) => (
+            <div key={t} className="reveal hover:-translate-y-1 rounded-2xl border border-border bg-card p-5">
               <I className="mb-3 size-6 text-primary" />
               <p className="font-semibold">{t}</p>
             </div>
@@ -197,13 +199,13 @@ function Index() {
 
       <section id="fundadores" className="mx-auto max-w-6xl px-6 py-20">
         <Eyebrow>Quem faz acontecer</Eyebrow>
-        <h2 className="mb-12 text-4xl font-bold">Fundadores</h2>
+        <h2 className="reveal mb-12 text-4xl font-bold">Fundadores</h2>
         <div className="grid gap-5 md:grid-cols-3">
-          {founders.map((n) => {
+          {founders.map((n, i) => {
             const parts = n.split(" ");
             const ini = (parts[0]?.[0] ?? "") + (parts.at(-1)?.[0] ?? "");
             return (
-              <div key={n} className="flex items-center gap-4 rounded-2xl border border-border bg-card p-6">
+              <div key={n} className="reveal hover:-translate-y-1 flex items-center gap-4 rounded-2xl border border-border bg-card p-6">
                 <span className="grid size-14 shrink-0 place-items-center rounded-full border-2 border-primary font-display text-lg font-bold text-primary shadow-glow">{ini}</span>
                 <div>
                   <p className="font-display font-bold leading-tight">{n}</p>
@@ -217,10 +219,10 @@ function Index() {
 
       <section id="faq" className="mx-auto max-w-3xl px-6 py-20">
         <Eyebrow>Perguntas frequentes</Eyebrow>
-        <h2 className="mb-10 text-4xl font-bold">Tudo sobre sites e vendas</h2>
+        <h2 className="reveal mb-10 text-4xl font-bold">Tudo sobre sites e vendas</h2>
         <Accordion type="single" collapsible>
-          {faq.map(([q, a]) => (
-            <AccordionItem key={q} value={q}>
+          {faq.map(([q, a], i) => (
+            <AccordionItem key={q} value={q} className="reveal">
               <AccordionTrigger className="text-left text-base font-semibold hover:text-primary">{q}</AccordionTrigger>
               <AccordionContent className="text-muted-foreground">{a}</AccordionContent>
             </AccordionItem>
@@ -230,10 +232,10 @@ function Index() {
 
       <section className="mx-auto max-w-6xl px-6 py-24 text-center">
         <Eyebrow>Dê o próximo passo</Eyebrow>
-        <h2 className="text-4xl font-bold md:text-6xl">
+        <h2 className="reveal text-4xl font-bold md:text-6xl">
           Bora tirar sua ideia do <span className="text-primary">papel?</span>
         </h2>
-        <p className="mx-auto mt-5 max-w-lg text-muted-foreground">
+        <p className="reveal mx-auto mt-5 max-w-lg text-muted-foreground">
           Manda um direct com a palavra <strong className="text-foreground">SITE</strong> e receba um orçamento sem compromisso.
         </p>
         <div className="mt-10"><Cta>Chama no direct <ArrowRight className="size-4" /></Cta></div>
@@ -250,4 +252,26 @@ function Index() {
       </footer>
     </div>
   );
+}
+
+function useReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>(".reveal");
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.15 },
+    );
+    els.forEach((el) => {
+      const sibs = Array.from(el.parentElement?.children ?? []).filter((c) => c.classList.contains("reveal"));
+      el.style.transitionDelay = `${Math.min(sibs.indexOf(el), 6) * 90}ms`;
+      io.observe(el);
+    });
+    return () => io.disconnect();
+  }, []);
 }
