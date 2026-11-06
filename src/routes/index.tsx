@@ -183,7 +183,7 @@ function Index() {
         <h2 className="reveal mb-12 text-4xl font-bold">Do papel para a tela em 4 passos</h2>
         <div className="grid gap-8 md:grid-cols-4">
           {steps.map((s, i) => (
-            <div key={s.t} className="reveal card-fx border-t-2 border-primary pt-5">
+            <div key={s.t} className="reveal card-fx rounded-2xl border border-border border-t-2 border-t-primary bg-card px-5 pb-6 pt-5">
               <span className="led" aria-hidden />
               <p className="font-display text-4xl font-bold text-primary">0{i + 1}</p>
               <h3 className="mt-2 text-lg font-bold">{s.t}</h3>
