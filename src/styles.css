@@ -135,3 +135,35 @@
   .reveal { opacity: 1; transform: none; transition: none; }
   .animate-fade-up, .animate-float, .animate-glow { animation: none; }
 }
+
+@keyframes led-blink { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+@utility led {
+  display: inline-block;
+  width: 0.5rem; height: 0.5rem; border-radius: 9999px;
+  background: var(--primary);
+  box-shadow: 0 0 6px var(--primary), 0 0 14px color-mix(in oklab, var(--primary) 70%, transparent);
+  animation: led-blink 2.2s ease-in-out infinite;
+}
+
+@utility card-fx {
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  &:hover, &:active {
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--primary);
+    box-shadow: var(--glow);
+    background-color: color-mix(in oklab, var(--primary) 6%, var(--card));
+  }
+  &:active { transform: scale(0.98); }
+  & svg, & .fx-icon { transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1); }
+  &:hover svg, &:active svg, &:hover .fx-icon, &:active .fx-icon { transform: scale(1.2) rotate(-6deg); }
+  & .led { position: absolute; top: 1rem; right: 1rem; opacity: 0.35; animation: none; transition: opacity 0.3s; }
+  &:hover .led, &:active .led { opacity: 1; animation: led-blink 1s ease-in-out infinite; }
+}
+
+@utility press-fx {
+  transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  &:hover { transform: translateY(-2px); }
+  &:active { transform: scale(0.95); }
+}

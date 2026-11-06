@@ -99,8 +99,8 @@ function Cta({ children, ghost }: { children: React.ReactNode; ghost?: boolean }
       rel="noreferrer"
       className={
         ghost
-          ? "inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 font-semibold transition-colors hover:border-primary hover:text-primary"
-          : "inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-bold text-primary-foreground shadow-glow animate-glow transition-transform hover:-translate-y-0.5"
+          ? "inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 font-semibold press-fx hover:border-primary hover:text-primary"
+          : "inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-bold text-primary-foreground shadow-glow animate-glow press-fx"
       }
     >
       {children}
@@ -109,7 +109,7 @@ function Cta({ children, ghost }: { children: React.ReactNode; ghost?: boolean }
 }
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="reveal mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-primary">{children}</p>;
+  return <p className="reveal mb-3 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.2em] text-primary"><span className="led" aria-hidden />{children}</p>;
 }
 
 function Index() {
@@ -120,12 +120,12 @@ function Index() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Logo />
           <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
-            <a href="#servicos" className="hover:text-primary">Serviços</a>
-            <a href="#processo" className="hover:text-primary">Processo</a>
-            <a href="#sobre" className="hover:text-primary">Sobre</a>
-            <a href="#faq" className="hover:text-primary">Perguntas</a>
+            <a href="#servicos" className="press-fx inline-block hover:text-primary">Serviços</a>
+            <a href="#processo" className="press-fx inline-block hover:text-primary">Processo</a>
+            <a href="#sobre" className="press-fx inline-block hover:text-primary">Sobre</a>
+            <a href="#faq" className="press-fx inline-block hover:text-primary">Perguntas</a>
           </nav>
-          <a href={IG} target="_blank" rel="noreferrer" className="rounded-full border border-primary px-4 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-primary-foreground">
+          <a href={IG} target="_blank" rel="noreferrer" className="rounded-full border border-primary px-4 py-2 text-sm font-semibold text-primary press-fx hover:bg-primary hover:text-primary-foreground">
             Pedir orçamento
           </a>
         </div>
@@ -153,7 +153,8 @@ function Index() {
         <h2 className="reveal mb-12 text-4xl font-bold">Soluções digitais sob medida</h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services.map(({ icon: I, t, d }) => (
-            <div key={t} className="reveal hover:-translate-y-1 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary">
+            <div key={t} className="reveal card-fx rounded-2xl border border-border bg-card p-6">
+              <span className="led" aria-hidden />
               <I className="mb-5 size-8 text-primary" />
               <h3 className="mb-2 text-xl font-bold">{t}</h3>
               <p className="text-sm text-muted-foreground">{d}</p>
@@ -167,7 +168,8 @@ function Index() {
         <h2 className="reveal mb-12 text-4xl font-bold">Do papel para a tela em 4 passos</h2>
         <div className="grid gap-8 md:grid-cols-4">
           {steps.map((s, i) => (
-            <div key={s.t} className="reveal hover:-translate-y-1 border-t-2 border-primary pt-5">
+            <div key={s.t} className="reveal card-fx border-t-2 border-primary pt-5">
+              <span className="led" aria-hidden />
               <p className="font-display text-4xl font-bold text-primary">0{i + 1}</p>
               <h3 className="mt-2 text-lg font-bold">{s.t}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{s.d}</p>
@@ -189,7 +191,8 @@ function Index() {
         </div>
         <div className="grid grid-cols-2 gap-4 self-center">
           {perks.map(({ icon: I, t }) => (
-            <div key={t} className="reveal hover:-translate-y-1 rounded-2xl border border-border bg-card p-5">
+            <div key={t} className="reveal card-fx rounded-2xl border border-border bg-card p-5">
+              <span className="led" aria-hidden />
               <I className="mb-3 size-6 text-primary" />
               <p className="font-semibold">{t}</p>
             </div>
@@ -205,8 +208,9 @@ function Index() {
             const parts = n.split(" ");
             const ini = (parts[0]?.[0] ?? "") + (parts.at(-1)?.[0] ?? "");
             return (
-              <div key={n} className="reveal hover:-translate-y-1 flex items-center gap-4 rounded-2xl border border-border bg-card p-6">
-                <span className="grid size-14 shrink-0 place-items-center rounded-full border-2 border-primary font-display text-lg font-bold text-primary shadow-glow">{ini}</span>
+              <div key={n} className="reveal card-fx flex items-center gap-4 rounded-2xl border border-border bg-card p-6">
+              <span className="led" aria-hidden />
+                <span className="grid size-14 shrink-0 place-items-center fx-icon rounded-full border-2 border-primary font-display text-lg font-bold text-primary shadow-glow">{ini}</span>
                 <div>
                   <p className="font-display font-bold leading-tight">{n}</p>
                   <p className="text-sm text-muted-foreground">Cofundador</p>
