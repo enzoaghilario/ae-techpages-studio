@@ -152,7 +152,7 @@ function Index() {
         <Eyebrow>O que fazemos</Eyebrow>
         <h2 className="reveal mb-12 text-4xl font-bold">Soluções digitais sob medida</h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map(({ icon: I, t, d }, i) => (
+          {services.map(({ icon: I, t, d }) => (
             <div key={t} className="reveal hover:-translate-y-1 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary">
               <I className="mb-5 size-8 text-primary" />
               <h3 className="mb-2 text-xl font-bold">{t}</h3>
@@ -166,7 +166,7 @@ function Index() {
         <Eyebrow>Como funciona</Eyebrow>
         <h2 className="reveal mb-12 text-4xl font-bold">Do papel para a tela em 4 passos</h2>
         <div className="grid gap-8 md:grid-cols-4">
-          {steps.map((s, i, i) => (
+          {steps.map((s, i) => (
             <div key={s.t} className="reveal hover:-translate-y-1 border-t-2 border-primary pt-5">
               <p className="font-display text-4xl font-bold text-primary">0{i + 1}</p>
               <h3 className="mt-2 text-lg font-bold">{s.t}</h3>
@@ -188,7 +188,7 @@ function Index() {
           </p>
         </div>
         <div className="grid grid-cols-2 gap-4 self-center">
-          {perks.map(({ icon: I, t }, i) => (
+          {perks.map(({ icon: I, t }) => (
             <div key={t} className="reveal hover:-translate-y-1 rounded-2xl border border-border bg-card p-5">
               <I className="mb-3 size-6 text-primary" />
               <p className="font-semibold">{t}</p>
@@ -201,7 +201,7 @@ function Index() {
         <Eyebrow>Quem faz acontecer</Eyebrow>
         <h2 className="reveal mb-12 text-4xl font-bold">Fundadores</h2>
         <div className="grid gap-5 md:grid-cols-3">
-          {founders.map((n, i) => {
+          {founders.map((n) => {
             const parts = n.split(" ");
             const ini = (parts[0]?.[0] ?? "") + (parts.at(-1)?.[0] ?? "");
             return (
@@ -221,7 +221,7 @@ function Index() {
         <Eyebrow>Perguntas frequentes</Eyebrow>
         <h2 className="reveal mb-10 text-4xl font-bold">Tudo sobre sites e vendas</h2>
         <Accordion type="single" collapsible>
-          {faq.map(([q, a], i) => (
+          {faq.map(([q, a]) => (
             <AccordionItem key={q} value={q} className="reveal">
               <AccordionTrigger className="text-left text-base font-semibold hover:text-primary">{q}</AccordionTrigger>
               <AccordionContent className="text-muted-foreground">{a}</AccordionContent>
