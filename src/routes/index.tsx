@@ -131,7 +131,9 @@ function Index() {
         </div>
       </header>
 
-      <section className="relative mx-auto max-w-6xl px-6 pb-28 pt-24 md:pt-32">
+      <section className="build-section relative mx-auto max-w-6xl px-6 pb-28 pt-24 md:pt-32">
+        <BuildCursor name="Felipe" x="8%" y="38%" fromX="-260px" fromY="-160px" delay={0.2} />
+        <BuildCursor name="Enzo" x="45%" y="70%" fromX="300px" fromY="120px" delay={0.7} />
         <span aria-hidden className="pointer-events-none absolute -right-10 top-10 select-none font-display text-[16rem] font-bold leading-none text-outline animate-float md:text-[26rem]">AE</span>
         <div className="relative max-w-3xl animate-fade-up">
           <Eyebrow>Landing pages · Sites · SaaS</Eyebrow>
@@ -148,7 +150,9 @@ function Index() {
         </div>
       </section>
 
-      <section id="servicos" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="servicos" className="build-section relative mx-auto max-w-6xl px-6 py-20">
+        <BuildCursor name="André" x="22%" y="48%" fromX="-300px" fromY="180px" delay={0} />
+        <BuildCursor name="Enzo" x="72%" y="62%" fromX="280px" fromY="-140px" delay={0.5} />
         <Eyebrow>O que fazemos</Eyebrow>
         <h2 className="reveal mb-12 text-4xl font-bold">Soluções digitais sob medida</h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -163,7 +167,9 @@ function Index() {
         </div>
       </section>
 
-      <section id="processo" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="processo" className="build-section relative mx-auto max-w-6xl px-6 py-20">
+        <BuildCursor name="Felipe" x="35%" y="55%" fromX="-280px" fromY="-120px" delay={0} />
+        <BuildCursor name="André" x="85%" y="62%" fromX="220px" fromY="160px" delay={0.6} />
         <Eyebrow>Como funciona</Eyebrow>
         <h2 className="reveal mb-12 text-4xl font-bold">Do papel para a tela em 4 passos</h2>
         <div className="grid gap-8 md:grid-cols-4">
@@ -178,7 +184,9 @@ function Index() {
         </div>
       </section>
 
-      <section id="sobre" className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2">
+      <section id="sobre" className="build-section relative mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2">
+        <BuildCursor name="Enzo" x="20%" y="30%" fromX="-240px" fromY="150px" delay={0} />
+        <BuildCursor name="Felipe" x="70%" y="45%" fromX="260px" fromY="-150px" delay={0.5} />
         <div>
           <Eyebrow>Sobre a startup</Eyebrow>
           <h2 className="reveal mb-6 text-4xl font-bold">Tecnologia com cara de gente</h2>
@@ -200,7 +208,10 @@ function Index() {
         </div>
       </section>
 
-      <section id="fundadores" className="mx-auto max-w-6xl px-6 py-20">
+      <section id="fundadores" className="build-section relative mx-auto max-w-6xl px-6 py-20">
+        <BuildCursor name="André" x="15%" y="62%" fromX="-260px" fromY="140px" delay={0} />
+        <BuildCursor name="Felipe" x="50%" y="62%" fromX="0px" fromY="220px" delay={0.35} />
+        <BuildCursor name="Enzo" x="82%" y="62%" fromX="260px" fromY="140px" delay={0.7} />
         <Eyebrow>Quem faz acontecer</Eyebrow>
         <h2 className="reveal mb-12 text-4xl font-bold">Fundadores</h2>
         <div className="grid gap-5 md:grid-cols-3">
@@ -221,7 +232,8 @@ function Index() {
         </div>
       </section>
 
-      <section id="faq" className="mx-auto max-w-3xl px-6 py-20">
+      <section id="faq" className="build-section relative mx-auto max-w-3xl px-6 py-20">
+        <BuildCursor name="Enzo" x="60%" y="25%" fromX="260px" fromY="-140px" delay={0} />
         <Eyebrow>Perguntas frequentes</Eyebrow>
         <h2 className="reveal mb-10 text-4xl font-bold">Tudo sobre sites e vendas</h2>
         <Accordion type="single" collapsible>
@@ -234,7 +246,9 @@ function Index() {
         </Accordion>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24 text-center">
+      <section className="build-section relative mx-auto max-w-6xl px-6 py-24 text-center">
+        <BuildCursor name="André" x="30%" y="40%" fromX="-260px" fromY="120px" delay={0} />
+        <BuildCursor name="Felipe" x="58%" y="78%" fromX="240px" fromY="140px" delay={0.5} />
         <Eyebrow>Dê o próximo passo</Eyebrow>
         <h2 className="reveal text-4xl font-bold md:text-6xl">
           Bora tirar sua ideia do <span className="text-primary">papel?</span>
@@ -260,7 +274,7 @@ function Index() {
 
 function useReveal() {
   useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>(".reveal");
+    const els = document.querySelectorAll<HTMLElement>(".reveal, .build-section");
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
@@ -269,13 +283,27 @@ function useReveal() {
             io.unobserve(e.target);
           }
         }),
-      { threshold: 0.15 },
+      { threshold: 0.12 },
     );
     els.forEach((el) => {
       const sibs = Array.from(el.parentElement?.children ?? []).filter((c) => c.classList.contains("reveal"));
-      el.style.transitionDelay = `${Math.min(sibs.indexOf(el), 6) * 90}ms`;
+      el.style.transitionDelay = `${300 + Math.min(sibs.indexOf(el), 6) * 140}ms`;
       io.observe(el);
     });
     return () => io.disconnect();
   }, []);
+}
+
+function BuildCursor({ name, x, y, fromX, fromY, delay }: { name: string; x: string; y: string; fromX: string; fromY: string; delay: number }) {
+  const vars = { "--from-x": fromX, "--from-y": fromY, "--delay": `${delay}s`, left: x, top: y } as React.CSSProperties;
+  return (
+    <>
+      <span aria-hidden className="build-frame" style={{ ...vars, width: "9rem", height: "4rem", transform: "translate(-1rem,-1rem)" } as React.CSSProperties} />
+      <span aria-hidden className="build-cursor" style={vars}>
+        <span className="click-ring" />
+        <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor"><path d="M1 1l17 8-7.5 2.2L7 19z" stroke="var(--background)" strokeWidth="1.2" strokeLinejoin="round" /></svg>
+        <span className="cursor-tag">{name}</span>
+      </span>
+    </>
+  );
 }
