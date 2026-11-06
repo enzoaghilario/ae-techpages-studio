@@ -281,12 +281,14 @@
 }
 
 /* Primeira pergunta em destaque */
-.faq-star {
-  border-color: color-mix(in oklab, var(--primary) 55%, var(--border)) !important;
-  background: color-mix(in oklab, var(--primary) 7%, var(--card)) !important;
-  box-shadow: var(--glow);
-  &:hover { border-color: var(--primary) !important; }
-  &[data-state="open"] {
+@utility faq-star {
+  &.faq-item {
+    border-color: color-mix(in oklab, var(--primary) 55%, var(--border)) !important;
+    background: color-mix(in oklab, var(--primary) 7%, var(--card)) !important;
+    box-shadow: var(--glow);
+  }
+  &.faq-item:hover { border-color: var(--primary) !important; }
+  &.faq-item[data-state="open"] {
     background: color-mix(in oklab, var(--primary) 10%, var(--card)) !important;
   }
 }
