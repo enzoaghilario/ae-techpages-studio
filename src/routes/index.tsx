@@ -293,22 +293,59 @@ function Index() {
   );
 }
 
+const CURSOR_NAMES = ["Felipe", "Enzo", "André", "Design", "Código", "Layout", "SEO", "Deploy"];
+const ARROW =
+  '<svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor"><path d="M1 1l17 8-7.5 2.2L7 19z" stroke="var(--background)" stroke-width="1.2" stroke-linejoin="round"/></svg>';
+
+function flyCursor(el: HTMLElement, delay: number) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const r = el.getBoundingClientRect();
+  const top = r.top + window.scrollY;
+  const left = r.left + window.scrollX;
+  const c = document.createElement("span");
+  c.className = "fly-cursor";
+  c.innerHTML = `${ARROW}<span class="cursor-tag">${CURSOR_NAMES[Math.floor(Math.random() * CURSOR_NAMES.length)]}</span>`;
+  c.style.left = "0px";
+  c.style.top = "0px";
+  c.style.opacity = "0";
+  document.body.appendChild(c);
+  const sx = left + (Math.random() > 0.5 ? -160 : r.width + 160);
+  const sy = top + (Math.random() - 0.5) * 240;
+  const y = top + Math.min(r.height / 2, 40);
+  const anim = c.animate(
+    [
+      { transform: `translate(${sx}px, ${sy}px)`, opacity: 0 },
+      { transform: `translate(${left}px, ${y}px)`, opacity: 1, offset: 0.3 },
+      { transform: `translate(${left}px, ${y}px) scale(0.85)`, offset: 0.36 },
+      { transform: `translate(${left + r.width}px, ${y + 10}px)`, opacity: 1, offset: 0.85 },
+      { transform: `translate(${left + r.width + 30}px, ${y - 20}px)`, opacity: 0 },
+    ],
+    { duration: 1700, delay: Math.max(0, delay - 500), easing: "cubic-bezier(0.45,0,0.2,1)", fill: "both" },
+  );
+  anim.onfinish = () => c.remove();
+}
+
 function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>(".reveal, .build-section");
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-visible");
-            io.unobserve(e.target);
+          if (!e.isIntersecting) return;
+          const el = e.target as HTMLElement;
+          io.unobserve(el);
+          if (el.classList.contains("reveal")) {
+            const delay = Number(el.dataset.delay ?? 0);
+            el.style.setProperty("--build-delay", `${delay}ms`);
+            flyCursor(el, delay);
           }
+          el.classList.add("is-visible");
         }),
-      { threshold: 0.12 },
+      { threshold: 0.15 },
     );
     els.forEach((el) => {
       const sibs = Array.from(el.parentElement?.children ?? []).filter((c) => c.classList.contains("reveal"));
-      el.style.transitionDelay = `${300 + Math.min(sibs.indexOf(el), 6) * 140}ms`;
+      el.dataset.delay = String(500 + Math.min(Math.max(sibs.indexOf(el), 0), 6) * 220);
       io.observe(el);
     });
     return () => io.disconnect();
