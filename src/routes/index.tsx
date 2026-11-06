@@ -139,7 +139,7 @@ function Index() {
         <BuildCursor name="Enzo" x="45%" y="70%" fromX="300px" fromY="120px" delay={0.7} />
         <span aria-hidden className="pointer-events-none absolute -right-10 top-10 select-none font-display text-[16rem] font-bold leading-none text-outline animate-float md:text-[26rem]">AE</span>
         <div className="relative max-w-3xl animate-fade-up">
-          <Eyebrow>Landing pages · Sites · SaaS</Eyebrow>
+          <Eyebrow>Landing pages · Sites · Automações</Eyebrow>
           <h1 className="text-5xl font-bold leading-[1.05] md:text-7xl">
             Sua ideia. <span className="text-primary">Nós criamos.</span>
           </h1>
@@ -183,7 +183,7 @@ function Index() {
         <h2 className="reveal mb-12 text-4xl font-bold">Do papel para a tela em 4 passos</h2>
         <div className="grid gap-8 md:grid-cols-4">
           {steps.map((s, i) => (
-            <div key={s.t} className="reveal card-fx rounded-2xl border border-border border-t-2 border-t-primary bg-card px-5 pb-6 pt-5">
+            <div key={s.t} className="reveal card-fx rounded-none border border-border border-t-2 border-t-primary bg-card px-5 pb-6 pt-5">
               <span className="led" aria-hidden />
               <p className="font-display text-4xl font-bold text-primary">0{i + 1}</p>
               <h3 className="mt-2 text-lg font-bold">{s.t}</h3>
