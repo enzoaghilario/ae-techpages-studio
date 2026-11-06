@@ -163,7 +163,7 @@ function Index() {
         <h2 className="reveal mb-12 text-4xl font-bold">Soluções digitais sob medida</h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services.map(({ icon: I, t, d }) => (
-            <div key={t} className="reveal card-fx rounded-2xl border border-border bg-card p-6">
+            <div key={t} className="reveal card-fx rounded-none border border-border bg-card p-6">
               <span className="led" aria-hidden />
               <I className="mb-5 size-8 text-primary" />
               <h3 className="mb-2 text-xl font-bold">{t}</h3>
