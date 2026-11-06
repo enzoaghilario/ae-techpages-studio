@@ -199,12 +199,24 @@ function Index() {
             Tudo sobre <span className="text-neon">sites e vendas</span>
           </h2>
           <Accordion type="single" collapsible>
-            {faq.map(([q, a]) => (
-              <AccordionItem key={q} value={q} className="rv faq-item">
-                <AccordionTrigger className="text-left text-base font-semibold hover:text-primary">{q}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">{a}</AccordionContent>
-              </AccordionItem>
-            ))}
+            {faq.map(([q, a], i) => {
+              const star = i === 0;
+              return (
+                <AccordionItem key={q} value={q} className={`rv faq-item${star ? " faq-star" : ""}`}>
+                  <AccordionTrigger className={`text-left font-semibold hover:text-primary ${star ? "text-lg md:text-xl" : "text-base"}`}>
+                    {star ? (
+                      <span className="flex items-center gap-2.5">
+                        <span className="led" aria-hidden />
+                        {q}
+                      </span>
+                    ) : (
+                      q
+                    )}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">{a}</AccordionContent>
+                </AccordionItem>
+              );
+            })}
           </Accordion>
         </section>
 
