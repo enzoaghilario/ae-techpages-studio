@@ -38,6 +38,7 @@ const services = [
 const founders = ["Felipe Quast de Andrade", "Enzo Alessandro Gonçalves Hilário", "André Luiz Carmanhan Furlan"];
 
 const faq: [string, string][] = [
+  ["Vocês atendem fora de Morro Agudo SP?", "Sim, o Brasil todo. A conversa, o orçamento e os ajustes acontecem pelo Instagram e futuramente pelo WhatsApp."],
   ["Quanto custa um site?", "Depende do tipo de projeto, número de páginas e funcionalidades. Cada orçamento é personalizado e sem compromisso — é só mandar a palavra SITE no nosso direct."],
   ["Quanto tempo leva para ficar pronto?", "Landing pages costumam ficar prontas em poucos dias. Sites completos e sistemas variam conforme o escopo, e o prazo é sempre combinado antes de começar."],
   ["Qual a diferença entre landing page e site?", "A landing page é uma página única focada em uma ação (comprar, cadastrar, chamar no WhatsApp). O site tem várias páginas e apresenta a empresa de forma completa."],
