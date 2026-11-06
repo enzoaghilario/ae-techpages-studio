@@ -3,13 +3,8 @@ import { ArrowRight, Instagram } from "lucide-react";
 import { HERO_PHASES, phaseAt } from "@/lib/hero-timeline";
 import { IG } from "@/components/site/Logo";
 import { Scramble } from "@/components/site/Scramble";
+import { TeamCursors } from "@/components/site/TeamCursors";
 import type { ParticleScene } from "@/lib/particle-scene";
-
-const ARROW = (
-  <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor" aria-hidden>
-    <path d="M1 1l17 8-7.5 2.2L7 19z" stroke="var(--background)" strokeWidth="1.2" strokeLinejoin="round" />
-  </svg>
-);
 
 const STORY = [
   { title: "Toda ideia começa", accent: "solta.", text: "Você conta o que imagina. A gente escuta, pergunta e transforma em um plano claro." },
@@ -121,14 +116,7 @@ export function HeroParticles() {
         <div ref={hostRef} className={`absolute inset-0 transition-opacity duration-1000 ${ready ? "opacity-100" : "opacity-0"}`} />
 
         {/* A equipe trabalhando na peça */}
-        <div aria-hidden className="pointer-events-none absolute left-1/2 top-[18%] h-0 w-0 md:left-[62%] md:top-[30%]">
-          {["Felipe", "Enzo", "André"].map((n) => (
-            <span key={n} className="team-cursor">
-              {ARROW}
-              <span className="tag"><span>{n}</span></span>
-            </span>
-          ))}
-        </div>
+        <TeamCursors />
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background via-background/70 to-transparent md:hidden" />
 

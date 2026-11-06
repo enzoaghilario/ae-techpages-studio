@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Bot, Globe, Instagram, Layers, LayoutTemplate } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -10,6 +10,7 @@ import { Holo } from "@/components/site/Holo";
 import { Timeline } from "@/components/site/Timeline";
 import { PerksCube } from "@/components/site/PerksCube";
 import { Scramble } from "@/components/site/Scramble";
+import { useTeamPicks } from "@/hooks/use-team-picks";
 import { IG, Logo } from "@/components/site/Logo";
 import { startSmoothScroll } from "@/lib/smooth-scroll";
 
@@ -28,10 +29,10 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { icon: LayoutTemplate, t: "Landing Pages", d: "Páginas focadas em conversão para lançar produtos, captar contatos e vender mais." },
-  { icon: Globe, t: "Sites", d: "Sites institucionais modernos que passam credibilidade e colocam sua marca no Google." },
-  { icon: Layers, t: "SaaS", d: "Plataformas e sistemas web sob medida para transformar sua ideia em produto digital." },
-  { icon: Bot, t: "Automações", d: "Integrações e fluxos automáticos que economizam tempo e eliminam tarefas repetitivas." },
+  { icon: LayoutTemplate, t: "Landing Pages", d: "Páginas focadas em conversão para lançar produtos, captar contatos e vender mais.", who: "Felipe", did: "desenhando" },
+  { icon: Globe, t: "Sites", d: "Sites institucionais modernos que passam credibilidade e colocam sua marca no Google.", who: "Enzo", did: "codando" },
+  { icon: Layers, t: "SaaS", d: "Plataformas e sistemas web sob medida para transformar sua ideia em produto digital.", who: "André", did: "testando" },
+  { icon: Bot, t: "Automações", d: "Integrações e fluxos automáticos que economizam tempo e eliminam tarefas repetitivas.", who: "Enzo", did: "conectando" },
 ];
 
 const founders = ["Felipe Quast de Andrade", "Enzo Alessandro Gonçalves Hilário", "André Luiz Carmanhan Furlan"];
@@ -108,8 +109,12 @@ function useEffects() {
 
 function Index() {
   useEffects();
+  const team = useRef<HTMLDivElement>(null);
+  useTeamPicks(team);
   return (
-    <div className="min-h-screen overflow-x-clip bg-background bg-grid">
+    <div className="relative min-h-screen overflow-x-clip bg-background bg-grid">
+      {/* Camada onde os cursores da equipe trabalham pela página */}
+      <div ref={team} aria-hidden className="pointer-events-none absolute inset-0 z-30" />
       <Cursor />
       <Header />
       <main>
@@ -123,8 +128,8 @@ function Index() {
             Soluções digitais <span className="text-neon">sob medida</span>
           </h2>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map(({ icon: I, t, d }) => (
-              <Holo key={t} className="rv group rounded-2xl p-6">
+            {services.map(({ icon: I, t, d, who, did }) => (
+              <Holo key={t} data-team={who} data-team-label={did} className="rv group rounded-2xl p-6">
                 <div className="lift">
                   <span className="mb-6 grid size-14 place-items-center rounded-xl border border-primary/40 bg-primary/10 shadow-glow transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-110">
                     <I className="size-7 text-primary" />
@@ -171,7 +176,7 @@ function Index() {
               const parts = n.split(" ");
               const ini = (parts[0]?.[0] ?? "") + (parts.at(-1)?.[0] ?? "");
               return (
-                <Holo key={n} className="rv rounded-2xl p-6">
+                <Holo key={n} data-team={parts[0]} data-team-label="esse sou eu" className="rv rounded-2xl p-6">
                   <div className="lift flex items-center gap-4">
                     <span className="ring-spin isolate grid size-16 shrink-0 place-items-center rounded-full">
                       <span className="grid size-full place-items-center rounded-full bg-background font-display text-xl font-bold text-primary">{ini}</span>
@@ -213,7 +218,7 @@ function Index() {
               Manda um direct com a palavra <strong className="text-foreground">SITE</strong> e receba um orçamento sem compromisso.
             </p>
             <div className="rv mt-10">
-              <a href={IG} target="_blank" rel="noreferrer" data-magnetic className="inline-flex items-center gap-2.5 rounded-full bg-primary px-9 py-4 text-lg font-bold text-primary-foreground shadow-glow animate-glow">
+              <a href={IG} target="_blank" rel="noreferrer" data-magnetic data-team="Felipe" data-team-label="te esperando no direct" className="inline-flex items-center gap-2.5 rounded-full bg-primary px-9 py-4 text-lg font-bold text-primary-foreground shadow-glow animate-glow">
                 <Instagram className="size-5" /> Chama no direct <ArrowRight className="size-5" />
               </a>
             </div>
