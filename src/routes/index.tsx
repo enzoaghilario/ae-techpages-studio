@@ -132,6 +132,9 @@ function Index() {
       </header>
 
       <section className="build-section relative mx-auto max-w-6xl px-6 pb-28 pt-24 md:pt-32">
+        <BuildCursor name="SEO" x="24%" y="65%" fromX="-198px" fromY="-146px" delay={1.07} />
+        <BuildCursor name="Design" x="9%" y="26%" fromX="287px" fromY="-130px" delay={1.38} />
+        <BuildCursor name="Layout" x="12%" y="30%" fromX="-340px" fromY="-173px" delay={1.98} />
         <BuildCursor name="Felipe" x="8%" y="38%" fromX="-260px" fromY="-160px" delay={0.2} />
         <BuildCursor name="Enzo" x="45%" y="70%" fromX="300px" fromY="120px" delay={0.7} />
         <span aria-hidden className="pointer-events-none absolute -right-10 top-10 select-none font-display text-[16rem] font-bold leading-none text-outline animate-float md:text-[26rem]">AE</span>
@@ -151,6 +154,9 @@ function Index() {
       </section>
 
       <section id="servicos" className="build-section relative mx-auto max-w-6xl px-6 py-20">
+        <BuildCursor name="Felipe" x="33%" y="20%" fromX="-254px" fromY="118px" delay={1.06} />
+        <BuildCursor name="Código" x="76%" y="38%" fromX="-328px" fromY="-147px" delay={1.38} />
+        <BuildCursor name="Enzo" x="77%" y="22%" fromX="-307px" fromY="199px" delay={1.89} />
         <BuildCursor name="André" x="22%" y="48%" fromX="-300px" fromY="180px" delay={0} />
         <BuildCursor name="Enzo" x="72%" y="62%" fromX="280px" fromY="-140px" delay={0.5} />
         <Eyebrow>O que fazemos</Eyebrow>
@@ -168,6 +174,9 @@ function Index() {
       </section>
 
       <section id="processo" className="build-section relative mx-auto max-w-6xl px-6 py-20">
+        <BuildCursor name="Deploy" x="51%" y="53%" fromX="-226px" fromY="-110px" delay={1.07} />
+        <BuildCursor name="Deploy" x="48%" y="72%" fromX="335px" fromY="-115px" delay={1.5} />
+        <BuildCursor name="André" x="48%" y="34%" fromX="287px" fromY="-185px" delay={1.82} />
         <BuildCursor name="Felipe" x="35%" y="55%" fromX="-280px" fromY="-120px" delay={0} />
         <BuildCursor name="André" x="85%" y="62%" fromX="220px" fromY="160px" delay={0.6} />
         <Eyebrow>Como funciona</Eyebrow>
@@ -185,6 +194,9 @@ function Index() {
       </section>
 
       <section id="sobre" className="build-section relative mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2">
+        <BuildCursor name="SEO" x="48%" y="59%" fromX="328px" fromY="108px" delay={1.15} />
+        <BuildCursor name="Código" x="65%" y="23%" fromX="-259px" fromY="136px" delay={1.56} />
+        <BuildCursor name="SEO" x="7%" y="74%" fromX="223px" fromY="-163px" delay={1.82} />
         <BuildCursor name="Enzo" x="20%" y="30%" fromX="-240px" fromY="150px" delay={0} />
         <BuildCursor name="Felipe" x="70%" y="45%" fromX="260px" fromY="-150px" delay={0.5} />
         <div>
@@ -209,6 +221,9 @@ function Index() {
       </section>
 
       <section id="fundadores" className="build-section relative mx-auto max-w-6xl px-6 py-20">
+        <BuildCursor name="Código" x="21%" y="46%" fromX="280px" fromY="110px" delay={0.95} />
+        <BuildCursor name="Layout" x="75%" y="50%" fromX="-290px" fromY="190px" delay={1.47} />
+        <BuildCursor name="SEO" x="53%" y="44%" fromX="-201px" fromY="-119px" delay={1.87} />
         <BuildCursor name="André" x="15%" y="62%" fromX="-260px" fromY="140px" delay={0} />
         <BuildCursor name="Felipe" x="50%" y="62%" fromX="0px" fromY="220px" delay={0.35} />
         <BuildCursor name="Enzo" x="82%" y="62%" fromX="260px" fromY="140px" delay={0.7} />
@@ -233,6 +248,9 @@ function Index() {
       </section>
 
       <section id="faq" className="build-section relative mx-auto max-w-3xl px-6 py-20">
+        <BuildCursor name="Design" x="6%" y="77%" fromX="-247px" fromY="100px" delay={0.94} />
+        <BuildCursor name="SEO" x="83%" y="55%" fromX="-311px" fromY="-158px" delay={1.62} />
+        <BuildCursor name="Layout" x="55%" y="66%" fromX="206px" fromY="181px" delay={1.92} />
         <BuildCursor name="Enzo" x="60%" y="25%" fromX="260px" fromY="-140px" delay={0} />
         <Eyebrow>Perguntas frequentes</Eyebrow>
         <h2 className="reveal mb-10 text-4xl font-bold">Tudo sobre sites e vendas</h2>
@@ -247,6 +265,9 @@ function Index() {
       </section>
 
       <section className="build-section relative mx-auto max-w-6xl px-6 py-24 text-center">
+        <BuildCursor name="Design" x="13%" y="41%" fromX="221px" fromY="-143px" delay={1.08} />
+        <BuildCursor name="Enzo" x="5%" y="34%" fromX="-273px" fromY="-109px" delay={1.61} />
+        <BuildCursor name="Layout" x="24%" y="47%" fromX="334px" fromY="160px" delay={1.84} />
         <BuildCursor name="André" x="30%" y="40%" fromX="-260px" fromY="120px" delay={0} />
         <BuildCursor name="Felipe" x="58%" y="78%" fromX="240px" fromY="140px" delay={0.5} />
         <Eyebrow>Dê o próximo passo</Eyebrow>
