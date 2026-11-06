@@ -25,7 +25,7 @@ export function Header() {
   // A refração por SVG só funciona em navegadores baseados no Chromium; nos outros fica o vidro desfocado.
   useEffect(() => {
     const ua = navigator.userAgent;
-    const chromium = /Chrome|Chromium|Edg\//.test(ua) && !/Firefox|FxiOS|CriOS|EdgiOS/.test(ua);
+    const chromium = /Chrome|Chromium|Edg\//.test(ua) && !/Firefox|FxiOS|CriOS|EdgiOS/.test(ua) && window.matchMedia("(pointer: fine)").matches;
     setRefract(chromium);
   }, []);
 

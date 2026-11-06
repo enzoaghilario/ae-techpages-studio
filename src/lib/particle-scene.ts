@@ -115,7 +115,7 @@ function logoPixels(font: string) {
 
 export async function createParticleScene(canvas: HTMLCanvasElement, opts: { mobile: boolean; reducedMotion: boolean }): Promise<ParticleScene> {
   const { mobile, reducedMotion } = opts;
-  const N = mobile ? 7000 : 16000;
+  const N = mobile ? 4500 : 16000;
 
   // Espera a fonte da marca para desenhar o "AE" certo.
   try {
@@ -125,7 +125,7 @@ export async function createParticleScene(canvas: HTMLCanvasElement, opts: { mob
   }
 
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: "high-performance" });
-  const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
+  const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.25 : 2);
   renderer.setPixelRatio(dpr);
   renderer.setClearColor(0x000000, 0);
   const scene = new THREE.Scene();

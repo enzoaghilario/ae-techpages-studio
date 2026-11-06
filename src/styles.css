@@ -508,3 +508,15 @@ html.lenis { scroll-behavior: auto; }
 @media (prefers-reduced-transparency: reduce) {
   .liquid-glass, .liquid-glass.can-refract { backdrop-filter: none; background: var(--card); }
 }
+
+/* Celular: menos efeitos pesados para a rolagem ficar lisa */
+@media (max-width: 767px), (pointer: coarse) {
+  .tc, .team-cursor { filter: none; }
+  .tc-bubble { backdrop-filter: none; background: var(--card); }
+  .portal::before { filter: blur(20px); animation: none; }
+  .text-neon, .hero-floor, .ring-spin::before { animation: none; }
+  .tc-pick { box-shadow: none; }
+  .liquid-glass, .liquid-glass.can-refract { backdrop-filter: blur(10px); }
+  .lg-lens { backdrop-filter: none; }
+  .backdrop-blur { backdrop-filter: none; }
+}
