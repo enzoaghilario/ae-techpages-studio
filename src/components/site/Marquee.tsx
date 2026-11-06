@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const WORDS = ["Landing Pages", "Sites", "SaaS", "Automações", "SEO", "Design sob medida", "Alta performance"];
+const WORDS = ["Landing Pages", "Sites", "Automações", "SEO", "Design sob medida", "Alta performance"];
 
 /** Faixa infinita que acelera e inverte conforme a rolagem. */
 export function Marquee() {
