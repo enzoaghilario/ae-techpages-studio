@@ -280,6 +280,19 @@
   &:hover button svg { color: var(--primary); }
 }
 
+/* Primeira pergunta em destaque */
+@utility faq-star {
+  &.faq-item {
+    border-color: color-mix(in oklab, var(--primary) 55%, var(--border)) !important;
+    background: color-mix(in oklab, var(--primary) 7%, var(--card)) !important;
+    box-shadow: var(--glow);
+  }
+  &.faq-item:hover { border-color: var(--primary) !important; }
+  &.faq-item[data-state="open"] {
+    background: color-mix(in oklab, var(--primary) 10%, var(--card)) !important;
+  }
+}
+
 /* ═══════════════ Versão 2 — futurista ═══════════════ */
 
 /* Rolagem suave (Lenis) */
