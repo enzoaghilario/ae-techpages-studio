@@ -167,3 +167,68 @@
   &:hover { transform: translateY(-2px); }
   &:active { transform: scale(0.95); }
 }
+
+/* Cursores que "constroem" o site ao rolar */
+@keyframes cursor-build {
+  0% { opacity: 0; transform: translate(var(--from-x, -220px), var(--from-y, 140px)); }
+  12% { opacity: 1; }
+  55% { transform: translate(0, 0); }
+  62% { transform: translate(0, 0) scale(0.82); }
+  70% { transform: translate(0, 0) scale(1); }
+  88% { opacity: 1; transform: translate(var(--drift-x, 30px), var(--drift-y, -20px)); }
+  100% { opacity: 0; transform: translate(var(--drift-x, 30px), var(--drift-y, -20px)); }
+}
+@keyframes click-ring {
+  0%, 58% { opacity: 0; transform: scale(0.2); }
+  62% { opacity: 1; }
+  85%, 100% { opacity: 0; transform: scale(2.4); }
+}
+@keyframes build-frame {
+  0%, 40% { opacity: 0; clip-path: inset(0 100% 100% 0); }
+  60% { opacity: 1; clip-path: inset(0 0 0 0); }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@utility build-cursor {
+  position: absolute;
+  z-index: 15;
+  pointer-events: none;
+  opacity: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  color: var(--primary);
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--primary) 80%, transparent));
+  .is-visible > & { animation: cursor-build 2.6s cubic-bezier(0.45, 0, 0.2, 1) both; animation-delay: var(--delay, 0s); }
+  & .cursor-tag {
+    margin-top: 14px;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    white-space: nowrap;
+  }
+  & .click-ring {
+    position: absolute; left: -10px; top: -10px;
+    width: 22px; height: 22px; border-radius: 9999px;
+    border: 2px solid var(--primary);
+    opacity: 0;
+  }
+  .is-visible > & .click-ring { animation: click-ring 2.6s ease-out both; animation-delay: var(--delay, 0s); }
+}
+
+@utility build-frame {
+  position: absolute;
+  pointer-events: none;
+  border: 1.5px dashed color-mix(in oklab, var(--primary) 60%, transparent);
+  border-radius: 1rem;
+  opacity: 0;
+  .is-visible > & { animation: build-frame 2.6s ease both; animation-delay: var(--delay, 0s); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .build-cursor, .build-frame { display: none; }
+}
