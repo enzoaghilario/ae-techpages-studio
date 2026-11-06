@@ -279,3 +279,151 @@
   & button svg { transition: transform 0.3s ease, color 0.3s ease; }
   &:hover button svg { color: var(--primary); }
 }
+
+/* ═══════════════ Versão 2 — futurista ═══════════════ */
+
+/* Rolagem suave (Lenis) */
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+html.lenis { scroll-behavior: auto; }
+
+:where(a, button):focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+
+/* Entrada dos elementos ao rolar */
+@utility rv {
+  opacity: 0;
+  transform: translateY(26px);
+  filter: blur(8px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.9s ease;
+  transition-delay: var(--rv-delay, 0ms);
+  &.is-in { opacity: 1; transform: none; filter: none; }
+}
+
+/* Texto em gradiente neon */
+@utility text-neon {
+  background: linear-gradient(100deg, var(--primary) 0%, oklch(0.95 0.06 200) 45%, var(--primary) 90%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: neon-pan 6s linear infinite;
+}
+@keyframes neon-pan { to { background-position: -200% 0; } }
+
+/* Topo com partículas */
+.hero-floor {
+  position: absolute; left: -50%; right: -50%; bottom: -10%; height: 55%;
+  background-image: linear-gradient(color-mix(in oklab, var(--primary) 22%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--primary) 22%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: perspective(500px) rotateX(64deg);
+  transform-origin: center top;
+  mask-image: linear-gradient(to bottom, transparent, #000 35%, #000 60%, transparent);
+  animation: floor-run 3.5s linear infinite;
+  opacity: 0.55;
+}
+@keyframes floor-run { to { background-position: 0 64px, 0 0; } }
+.hero-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(60% 50% at 70% 45%, color-mix(in oklab, var(--primary) 16%, transparent), transparent 70%),
+    radial-gradient(40% 40% at 20% 80%, oklch(0.45 0.12 260 / 0.25), transparent 70%);
+}
+@media (max-width: 899px) {
+  .hero-glow { background: radial-gradient(80% 45% at 50% 30%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 70%); }
+}
+.phase { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .8s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
+.phase.is-active { opacity: 1; transform: none; pointer-events: auto; }
+@media (max-width: 899px) { .phase { justify-content: flex-end; } }
+
+/* Cursores com nome que "trabalham" na peça */
+.team-cursor { position: absolute; z-index: 5; pointer-events: none; display: flex; align-items: flex-start; gap: 2px; color: var(--primary); filter: drop-shadow(0 0 8px color-mix(in oklab, var(--primary) 80%, transparent)); animation: team-a 9s ease-in-out infinite; }
+.team-cursor:nth-child(2) { animation-name: team-b; animation-duration: 11s; color: oklch(0.85 0.12 160); }
+.team-cursor:nth-child(3) { animation-name: team-c; animation-duration: 13s; color: oklch(0.8 0.12 280); }
+.team-cursor .tag { margin-top: 14px; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; white-space: nowrap; background: currentColor; }
+.team-cursor .tag > span { color: var(--primary-foreground); }
+@keyframes team-a { 0%,100% { transform: translate(0,0); } 30% { transform: translate(120px,60px); } 60% { transform: translate(40px,140px); } }
+@keyframes team-b { 0%,100% { transform: translate(0,0); } 35% { transform: translate(-140px,40px); } 70% { transform: translate(-60px,-90px); } }
+@keyframes team-c { 0%,100% { transform: translate(0,0); } 40% { transform: translate(90px,-80px); } 75% { transform: translate(-80px,-20px); } }
+
+/* Cartão holográfico com inclinação 3D */
+.holo {
+  --mx: 50%; --my: 50%; --rx: 0deg; --ry: 0deg;
+  position: relative;
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease;
+  background: linear-gradient(160deg, color-mix(in oklab, var(--card) 92%, var(--primary)), var(--card));
+  border: 1px solid var(--border);
+  isolation: isolate;
+}
+.holo:hover { transition-duration: .12s, .4s; box-shadow: 0 30px 60px -30px color-mix(in oklab, var(--primary) 55%, transparent); }
+.holo::before {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; z-index: -1;
+  background: radial-gradient(240px circle at var(--mx) var(--my), var(--primary), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity .4s;
+}
+.holo::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(320px circle at var(--mx) var(--my), color-mix(in oklab, var(--primary) 12%, transparent), transparent 60%);
+  opacity: 0; transition: opacity .4s;
+}
+.holo:hover::before, .holo:hover::after { opacity: 1; }
+.holo .lift { transform: translateZ(40px); transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+
+/* Linha do tempo do processo */
+.tl-node { transition: background-color .5s, box-shadow .5s, border-color .5s, color .5s; }
+.tl-node.is-on { background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); box-shadow: 0 0 0 6px color-mix(in oklab, var(--primary) 18%, transparent), var(--glow); }
+
+/* Cubo 3D dos diferenciais */
+.cube-stage { perspective: 1100px; }
+.cube { position: relative; width: var(--s); height: var(--s); transform-style: preserve-3d; will-change: transform; }
+.cube-face {
+  position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: .75rem; text-align: center; padding: 1rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 55%, transparent);
+  background: linear-gradient(150deg, color-mix(in oklab, var(--primary) 14%, var(--card)), color-mix(in oklab, var(--card) 92%, black));
+  box-shadow: inset 0 0 40px color-mix(in oklab, var(--primary) 18%, transparent);
+  backface-visibility: hidden;
+}
+.cube-face:nth-child(1) { transform: rotateY(0deg) translateZ(calc(var(--s) / 2)); }
+.cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); }
+.cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+.cube-face:nth-child(4) { transform: rotateY(270deg) translateZ(calc(var(--s) / 2)); }
+.cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); }
+.cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+.cube-shadow { width: var(--s); height: 30px; margin-top: 70px; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in oklab, var(--primary) 45%, transparent), transparent); filter: blur(6px); }
+
+/* Iniciais dos fundadores com anel girando */
+.ring-spin { position: relative; }
+.ring-spin::before { content: ""; position: absolute; inset: -3px; border-radius: 9999px; background: conic-gradient(from var(--a, 0deg), var(--primary), transparent 40%, var(--primary)); animation: spin-a 4s linear infinite; z-index: -1; }
+@property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes spin-a { to { --a: 360deg; } }
+
+/* Portal da chamada final */
+.portal { position: absolute; left: 50%; top: 50%; width: min(80vw, 720px); aspect-ratio: 1; translate: -50% -50%; pointer-events: none; }
+.portal::before, .portal::after { content: ""; position: absolute; inset: 0; border-radius: 9999px; }
+.portal::before { background: conic-gradient(from var(--a, 0deg), transparent, color-mix(in oklab, var(--primary) 60%, transparent), transparent 30%, transparent 60%, oklch(0.6 0.15 270 / .5), transparent); animation: spin-a 12s linear infinite; filter: blur(40px); opacity: .55; }
+.portal::after { inset: 18%; border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent); box-shadow: 0 0 80px color-mix(in oklab, var(--primary) 25%, transparent), inset 0 0 80px color-mix(in oklab, var(--primary) 18%, transparent); }
+
+/* Cursor neon (só computador) */
+.cursor-dot, .cursor-ring { position: fixed; left: 0; top: 0; z-index: 90; pointer-events: none; border-radius: 9999px; }
+.cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--primary); box-shadow: 0 0 10px var(--primary); }
+.cursor-ring { width: 38px; height: 38px; margin: -19px 0 0 -19px; border: 1px solid color-mix(in oklab, var(--primary) 70%, transparent); transition: width .25s, height .25s, margin .25s, background-color .25s, opacity .3s; }
+.cursor-ring.is-hot { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: color-mix(in oklab, var(--primary) 12%, transparent); }
+
+/* Menu do celular */
+.menu-panel { clip-path: circle(0% at calc(100% - 2.5rem) 2rem); visibility: hidden; transition: clip-path .7s cubic-bezier(.76,0,.24,1), visibility 0s linear .7s; }
+.menu-panel.is-open { clip-path: circle(150% at calc(100% - 2.5rem) 2rem); visibility: visible; transition: clip-path .7s cubic-bezier(.76,0,.24,1); }
+.menu-panel .menu-link { opacity: 0; transform: translateY(30px); transition: opacity .5s, transform .6s cubic-bezier(.2,.7,.2,1); }
+.menu-panel.is-open .menu-link { opacity: 1; transform: none; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rv { opacity: 1; transform: none; filter: none; transition: none; }
+  .hero-floor, .team-cursor, .text-neon, .ring-spin::before, .portal::before { animation: none; }
+  .holo, .menu-panel, .menu-panel .menu-link, .phase { transition: none; }
+}
