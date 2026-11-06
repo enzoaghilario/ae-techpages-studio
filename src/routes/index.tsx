@@ -109,7 +109,7 @@ function Cta({ children, ghost }: { children: React.ReactNode; ghost?: boolean }
 }
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="reveal mb-3 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.2em] text-primary"><span className="led" aria-hidden />{children}</p>;
+  return <p className="reveal mb-3 inline-flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.2em] text-primary"><span className="led" aria-hidden />{children}</p>;
 }
 
 function Index() {
