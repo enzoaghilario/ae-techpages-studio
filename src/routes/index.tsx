@@ -256,7 +256,7 @@ function Index() {
         <h2 className="reveal mb-10 text-4xl font-bold">Tudo sobre sites e vendas</h2>
         <Accordion type="single" collapsible>
           {faq.map(([q, a]) => (
-            <AccordionItem key={q} value={q} className="reveal">
+            <AccordionItem key={q} value={q} className="reveal faq-item">
               <AccordionTrigger className="text-left text-base font-semibold hover:text-primary">{q}</AccordionTrigger>
               <AccordionContent className="text-muted-foreground">{a}</AccordionContent>
             </AccordionItem>
