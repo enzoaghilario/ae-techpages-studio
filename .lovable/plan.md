@@ -14,6 +14,7 @@ Site de página única (landing page) em português para a AE Tech Pages, com ba
 3. **Serviços**: 4 cartões — Landing Pages, Sites Institucionais, SaaS, Automações
 4. **Como funciona**: 4 passos (Conversa, Proposta, Desenvolvimento, Entrega e suporte)
 5. **Sobre a startup**: texto sobre a AE Tech Pages (startup nova, foco em sites rápidos, modernos e que vendem) + diferenciais (entrega ágil, design sob medida, otimizado para Google e celular, suporte próximo)
+5b. **Fundadores**: cartões com Felipe Quast de Andrade, Enzo Alessandro Gonçalves Hilário e André Luiz Carmanhan Furlan (iniciais estilizadas no lugar de fotos; cargos podem ser enviados depois)
 6. **Perguntas frequentes** (sanfona), cerca de 10 perguntas: quanto custa um site, prazo, landing page x site, se o site ajuda a vender, se funciona no celular, aparecer no Google, domínio e hospedagem, manutenção, automações/SaaS, formas de pagamento
 7. **Chamada final**: "Bora tirar sua ideia do papel?" + botão para o direct
 8. **Rodapé**: @ae.techpages, link do Instagram, direitos reservados
