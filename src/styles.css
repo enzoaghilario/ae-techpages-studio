@@ -116,3 +116,22 @@
   color: transparent;
   -webkit-text-stroke: 1.5px color-mix(in oklab, var(--primary) 18%, transparent);
 }
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes float-slow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+@keyframes glow-pulse { 0%,100% { box-shadow: var(--glow); } 50% { box-shadow: 0 0 48px 0 color-mix(in oklab, var(--primary) 60%, transparent); } }
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  &.is-visible { opacity: 1; transform: none; }
+}
+@utility animate-fade-up { animation: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@utility animate-float { animation: float-slow 7s ease-in-out infinite; }
+@utility animate-glow { animation: glow-pulse 2.8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-fade-up, .animate-float, .animate-glow { animation: none; }
+}
