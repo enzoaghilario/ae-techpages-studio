@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { Holo } from "@/components/site/Holo";
 
 const STEPS = [
-  { t: "Conversa", d: "Entendemos seu negócio, objetivos e público." },
-  { t: "Proposta", d: "Orçamento claro, escopo definido e prazo combinado." },
-  { t: "Desenvolvimento", d: "Design e código sob medida, com você acompanhando." },
-  { t: "Entrega e suporte", d: "Site no ar, otimizado, e a gente segue junto." },
+  { t: "Conversa", d: "Entendemos seu negócio, objetivos e público.", who: "Felipe", did: "ouvindo a ideia" },
+  { t: "Proposta", d: "Orçamento claro, escopo definido e prazo combinado.", who: "André", did: "fechando a proposta" },
+  { t: "Desenvolvimento", d: "Design e código sob medida, com você acompanhando.", who: "Enzo", did: "codando" },
+  { t: "Entrega e suporte", d: "Site no ar, otimizado, e a gente segue junto.", who: "André", did: "publicando" },
 ];
 
 /** Linha do tempo que se acende com a rolagem; cada etapa liga quando a luz passa por ela. */
@@ -55,7 +55,7 @@ export function Timeline() {
             <span data-node className={`tl-node relative z-10 col-start-1 row-start-1 grid size-12 place-items-center rounded-full border border-border bg-background font-display font-bold md:absolute md:left-1/2 md:top-4 md:-translate-x-1/2 ${on >= i ? "is-on" : "text-muted-foreground"}`}>
               0{i + 1}
             </span>
-            <Holo className={`rv col-start-2 row-start-1 rounded-2xl p-6 ${right ? "md:col-start-2" : "md:col-start-1 md:text-right"}`}>
+            <Holo data-team={s.who} data-team-label={s.did} className={`rv col-start-2 row-start-1 rounded-2xl p-6 ${right ? "md:col-start-2" : "md:col-start-1 md:text-right"}`}>
               <h3 className="text-xl font-bold md:text-2xl">{s.t}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
             </Holo>

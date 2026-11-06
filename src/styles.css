@@ -427,3 +427,24 @@ html.lenis { scroll-behavior: auto; }
   .hero-floor, .team-cursor, .text-neon, .ring-spin::before, .portal::before { animation: none; }
   .holo, .menu-panel, .menu-panel .menu-link, .phase { transition: none; }
 }
+
+/* ═══════════════ Equipe trabalhando: Felipe, Enzo e André ═══════════════ */
+.tc { position: absolute; left: 0; top: 0; z-index: 6; pointer-events: none; display: flex; align-items: flex-start; gap: 2px; color: var(--tc); filter: drop-shadow(0 0 8px color-mix(in oklab, var(--tc) 70%, transparent)); will-change: transform; }
+.tc > svg { transform-origin: 2px 2px; transition: transform .12s ease; }
+.tc.is-down > svg { transform: scale(.8); }
+.tc-tag { margin-top: 14px; border-radius: 6px; padding: 2px 8px; font: 700 11px/1.45 var(--font-sans); white-space: nowrap; background: var(--tc); color: var(--primary-foreground); }
+.tc-ring { position: absolute; left: -10px; top: -10px; width: 22px; height: 22px; border-radius: 9999px; border: 2px solid var(--tc); opacity: 0; }
+.tc.is-click .tc-ring { animation: tc-ring .6s ease-out; }
+@keyframes tc-ring { 0% { opacity: 1; transform: scale(.3); } 100% { opacity: 0; transform: scale(2.6); } }
+.tc-bubble { position: absolute; left: 22px; top: 40px; white-space: nowrap; border: 1px solid color-mix(in oklab, var(--tc) 60%, transparent); background: color-mix(in oklab, var(--background) 82%, transparent); backdrop-filter: blur(6px); color: var(--foreground); border-radius: 8px; padding: 4px 9px; font: 500 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; opacity: 0; transform: translateY(4px); transition: opacity .25s, transform .25s; }
+.tc-bubble.is-on { opacity: 1; transform: none; }
+.tc-bubble .caret { display: inline-block; width: 6px; height: 1em; margin-left: 2px; vertical-align: -2px; background: var(--tc); animation: tc-blink 1s steps(1) infinite; }
+@keyframes tc-blink { 50% { opacity: 0; } }
+.tc-select { position: absolute; z-index: 5; pointer-events: none; border: 1.5px dashed var(--tc); background: color-mix(in oklab, var(--tc) 10%, transparent); border-radius: 6px; transition: opacity .4s; }
+.tc-pick { position: absolute; z-index: 5; pointer-events: none; border: 2px solid var(--tc); border-radius: 1.1rem; box-shadow: 0 0 28px -8px var(--tc); animation: tc-pick-in .35s ease-out both; transition: opacity .5s; }
+.tc-pick-tag { position: absolute; left: -2px; top: -24px; padding: 2px 8px; border-radius: 6px 6px 6px 0; background: var(--tc); color: var(--primary-foreground); font: 700 11px/1.5 var(--font-sans); white-space: nowrap; }
+@keyframes tc-pick-in { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .tc-bubble, .tc-pick { transition: none; animation: none; } }
+.tc-bubble.to-left { left: auto; right: calc(100% - 14px); }
+
+:root { --team-enzo: oklch(0.85 0.12 160); --team-andre: oklch(0.8 0.12 280); }

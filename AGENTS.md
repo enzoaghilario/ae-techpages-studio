@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Team cursor DOM behavior is shared in `src/lib/team.ts`, with hero loops in `TeamCursors` and scroll-triggered picks in `useTeamPicks`; this keeps both animation layers consistent without affecting real controls.
